@@ -1,3 +1,4 @@
+
 const express = require("express");
 const app = express();
 require("dotenv").config();
@@ -17,6 +18,7 @@ app.post("/stripe/charge", cors(), async (req, res) => {
     const payment = await stripe.paymentIntents.create({
       amount: amount,
       currency: "USD",
+      payment_method_types: ['card'],
       description: "Can She Code",
       payment_method: id,
       confirm: true,
